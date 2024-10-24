@@ -9,6 +9,9 @@ const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+/* Route */
+const projectRoute_1 = __importDefault(require("./routes/projectRoute"));
+const taskRoute_1 = __importDefault(require("./routes/taskRoute"));
 /* Configurations */
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -23,6 +26,8 @@ app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
     res.send("This is home route");
 });
+app.use("/projects", projectRoute_1.default);
+app.use("/tasks", taskRoute_1.default);
 /* Server */
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
