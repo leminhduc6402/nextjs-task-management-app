@@ -46,7 +46,7 @@ export interface Task {
     tags?: string;
     startDate?: string;
     dueDate?: string;
-    points?: string;
+    points?: number;
     projectId: number;
     authorUserId?: number;
     assignedUserId?: number;

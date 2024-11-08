@@ -192,11 +192,11 @@ const Task = ({ task }: TaskProps) => {
                     )}
                 </div>
 
-                <div className="text-xs text-gray-500 dark:text-neutral-500">
+                <div className="text-xs text-gray-600 dark:text-neutral-400">
                     {formattedStartDate && <span>{formattedStartDate} - </span>}
                     {formattedDueDate && <span>{formattedDueDate}</span>}
                 </div>
-                <p className="text-sm text-gray-600 dark:text-neutral-500">{task.description}</p>
+                <p className="text-sm text-gray-600 dark:text-neutral-400">{task.description}</p>
                 <div className="mt-4 border-t border-gray-200 dark:border-stroke-dark"></div>
 
                 {/* Users */}
