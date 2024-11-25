@@ -27,7 +27,7 @@ const Timeline = ({ id, setIsModalNewTaskOpen }: TimelineProps) => {
                 id: `Task-${task.id}`,
                 type: "task" as TaskTypeItems,
                 progress: task.points ? (task.points / 10) * 100 : 0,
-                isDisable: false,
+                isDisabled: false,
             })) || []
         );
     }, [tasks]);
@@ -42,7 +42,7 @@ const Timeline = ({ id, setIsModalNewTaskOpen }: TimelineProps) => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    if (error) {
+    if (error || !tasks) {
         return <div>An Error occurred while fetch task</div>;
     }
 
@@ -52,14 +52,14 @@ const Timeline = ({ id, setIsModalNewTaskOpen }: TimelineProps) => {
                 <h1 className="me-2 text-lg font-bold dark:text-white">Project Tasks Timeline</h1>
                 <div className="relative inline-block w-64">
                     <select
-                            className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 leading-tight shadow hover:border-gray-500 focus:outline-none dark:border-dark-secondary dark:bg-dark-secondary dark:text-white"
-                            value={displayOptions.viewMode}
-                            onChange={handleViewModeChange}
-                        >
-                            <option value={ViewMode.Day}>Day</option>
-                            <option value={ViewMode.Week}>Week</option>
-                            <option value={ViewMode.Month}>Month</option>
-                        </select>
+                        className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 leading-tight shadow hover:border-gray-500 focus:outline-none dark:border-dark-secondary dark:bg-dark-secondary dark:text-white"
+                        value={displayOptions.viewMode}
+                        onChange={handleViewModeChange}
+                    >
+                        <option value={ViewMode.Day}>Day</option>
+                        <option value={ViewMode.Week}>Week</option>
+                        <option value={ViewMode.Month}>Month</option>
+                    </select>
                 </div>
             </div>
             <div className="overflow-hidden rounded-md bg-white shadow dark:bg-dark-secondary dark:text-white">
