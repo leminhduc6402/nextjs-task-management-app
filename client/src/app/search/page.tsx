@@ -40,15 +40,19 @@ const Search = () => {
                 {isError && <p>Error occurred while fetching search results.</p>}
                 {!isLoading && !isError && searchResults && (
                     <div>
-                        {searchResults.tasks && searchResults.tasks?.length > 0 && <h2>Tasks</h2>}
+                        {searchResults.tasks && searchResults.tasks?.length > 0 && (
+                            <h2 className="mb-2 text-lg font-bold">Tasks</h2>
+                        )}
                         {searchResults.tasks?.map((task) => <TaskCard key={task.id} task={task} />)}
                         {searchResults.projects && searchResults.projects?.length > 0 && (
-                            <h2>Projects</h2>
+                            <h2 className="mb-2 text-lg font-bold">Projects</h2>
                         )}
                         {searchResults.projects?.map((project) => (
                             <ProjectCard key={project.id} project={project} />
                         ))}
-                        {searchResults.users && searchResults.users?.length > 0 && <h2>Users</h2>}
+                        {searchResults.users && searchResults.users?.length > 0 && (
+                            <h2 className="mb-2 text-lg font-bold">Users</h2>
+                        )}
                         {searchResults.users?.map((user) => (
                             <UserCard key={user.userId} user={user} />
                         ))}
