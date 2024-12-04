@@ -9,6 +9,7 @@ import cors from "cors";
 import projectRoute from "./routes/projectRoute";
 import taskRoute from "./routes/taskRoute";
 import searchRoute from "./routes/searchRoute";
+import userRoute from "./routes/userRoute";
 
 /* Configurations */
 dotenv.config();
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 app.use("/projects", projectRoute);
 app.use("/tasks", taskRoute);
 app.use("/search", searchRoute);
+app.use("/users", userRoute);
 
 /* Server */
 const port = process.env.PORT || 4000;

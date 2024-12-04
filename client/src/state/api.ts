@@ -64,9 +64,11 @@ export interface SearchResults {
 }
 
 export const api = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+    }),
     reducerPath: "api",
-    tagTypes: ["Projects", "Tasks"],
+    tagTypes: ["Projects", "Tasks", "Users"],
     endpoints: (build) => ({
         getProjects: build.query<Project[], void>({
             query: () => "projects",
@@ -95,16 +97,26 @@ export const api = createApi({
             }),
             invalidatesTags: ["Tasks"],
         }),
-        updateTaskStatus: build.mutation<Project, { taskId: number; status: string }>({
+        updateTaskStatus: build.mutation<
+            Project,
+            { taskId: number; status: string }
+        >({
             query: ({ taskId, status }) => ({
                 url: `tasks/${taskId}/status`,
                 method: "PATCH",
                 body: { status },
             }),
-            invalidatesTags: (result, error, { taskId }) => [{ type: "Tasks", id: taskId }],
+            invalidatesTags: (result, error, { taskId }) => [
+                { type: "Tasks", id: taskId },
+            ],
         }),
         search: build.query<SearchResults, string>({
             query: (query) => `search?query=${query}`,
+        }),
+
+        getUsers: build.query<User[], void>({
+            query: () => "users",
+            providesTags: ["Users"],
         }),
     }),
 });
@@ -116,4 +128,5 @@ export const {
     useCreateTaskMutation,
     useUpdateTaskStatusMutation,
     useSearchQuery,
+    useGetUsersQuery,
 } = api;
