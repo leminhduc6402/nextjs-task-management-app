@@ -87,8 +87,8 @@ const getUserTasks = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 OR: [
                     {
                         authorUserId: Number(userId),
-                        assignedUserId: Number(userId),
                     },
+                    { assignedUserId: Number(userId) },
                 ],
             },
             include: {
