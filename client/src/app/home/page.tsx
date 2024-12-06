@@ -32,7 +32,7 @@ const HomePage = () => {
         data: tasks,
         isLoading: tasksLoading,
         isError: tasksError,
-    } = useGetTasksQuery({ projectId: parseInt("1") });
+    } = useGetTasksQuery({ projectId: parseInt("10") });
     const {
         data: projects,
         isLoading: projectsLoading,
@@ -64,8 +64,8 @@ const HomePage = () => {
 
     const statusCount = projects?.reduce(
         (acc: Record<string, number>, project: Project) => {
-            const status = project.endDate ? "Complete" : "Active";
-            acc[status] = (acc[status as Priority] || 0) + 1;
+            const status = project.endDate ? "Completed" : "Active";
+            acc[status] = (acc[status] || 0) + 1;
             return acc;
         },
         {} as Record<string, number>,
@@ -142,7 +142,6 @@ const HomePage = () => {
                                     />
                                 ))}
                             </Pie>
-
                             <Tooltip />
                             <Legend />
                         </PieChart>
