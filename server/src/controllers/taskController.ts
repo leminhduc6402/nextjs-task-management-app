@@ -78,7 +78,10 @@ export const updateTaskStatus = async (req: Request, res: Response) => {
   }
 };
 
-export const getUserTasks = async (req: Request, res: Response) => {
+export const getUserTasks = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { userId } = req.params;
   try {
     const tasks = await prisma.task.findMany({
@@ -86,8 +89,8 @@ export const getUserTasks = async (req: Request, res: Response) => {
         OR: [
           {
             authorUserId: Number(userId),
-            assignedUserId: Number(userId),
           },
+          { assignedUserId: Number(userId) },
         ],
       },
       include: {
